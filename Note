@@ -1,0 +1,221 @@
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+
+var originalFile = null;
+
+function loadFile(){
+  originalFile = new SimpleImage(document.getElementById("originalFile"));
+  //context.drawImage(originalFile);
+  originalFile.drawTo(canvas);
+}
+
+function grayFilter(){
+  var grayImage = null;
+  grayImage = new SimpleImage(document.getElementById("originalFile"));
+  chackIfLoaded(grayImage);
+  for (var pixel of grayImage.values()){
+    var avgColor = ((pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3);
+    pixel.setRed(avgColor);
+    pixel.setGreen(avgColor);
+    pixel.setBlue(avgColor);
+  }
+  clearCanvas();
+  grayImage.drawTo(canvas);
+}
+
+function redFilter(){
+  var redImage = null;
+  redImage = new SimpleImage(document.getElementById("originalFile"));
+  chackIfLoaded(redImage);
+  //   if (redImage == null  || ! redImage.complete()) {
+  //    alert("Image not loaded ");
+  //  }
+  //var avg = 0;
+  for (var pixel of redImage.values()){
+    var avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue())/3;
+    if (avg < 128) {
+      pixel.setRed(avg * 2);
+      pixel.setGreen(0);
+      pixel.setBlue(0);
+    } else {
+      pixel.setRed(255);
+      pixel.setGreen(avg * 2 - 255);
+      pixel.setBlue(avg * 2 - 255);
+    }
+
+  }
+  clearCanvas();
+  redImage.drawTo(canvas);
+}
+
+function blueFilter(){
+  var blueImage = null;
+  blueImage = new SimpleImage(document.getElementById("originalFile"));
+  chackIfLoaded(blueImage);
+  for (var pixel of blueImage.values()){
+    pixel.setBlue(255);
+  }
+  clearCanvas();
+  blueImage.drawTo(canvas);
+}
+
+function windowEffect(){
+  var windowImage = null;
+  windowImage = new SimpleImage(document.getElementById("originalFile"));
+  chackIfLoaded(windowImage);
+  var width = windowImage.getWidth();
+  var height = windowImage.getHeight();
+  //alert("width: " + width + ", heigh: " + height);
+  var X = null;
+  var Y = null;
+  var partitionX = width / 3;
+  var partitionY = height / 2;
+  var W = 50
+  for (var pixel of windowImage.values()){
+    X = pixel.getX();
+    Y = pixel.getY();
+
+    if ((X < 2*W) || (X > (width - 2*W)) || (Y < 2*W) || (Y > (height - 2*W))) {
+    //if ((X < W) ) {
+      pixel.setRed(255);
+      pixel.setGreen(200);
+      pixel.setBlue(00);
+    } else {
+        if ((X > (partitionX - W))&& X < (partitionX + W)) {
+          pixel.setRed(255);
+          pixel.setGreen(200);
+          pixel.setBlue(00);
+        } else {
+            if ((X > (2*partitionX - W))&& X < (2*partitionX + W)) {
+              pixel.setRed(255);
+              pixel.setGreen(200);
+              pixel.setBlue(00);
+            }
+           else {
+              if ((Y > (partitionY - W))&& Y < (partitionY + W)) {
+                pixel.setRed(255);
+                pixel.setGreen(200);
+                pixel.setBlue(00);
+              }
+            }
+        }
+      }
+  }
+  clearCanvas();
+  windowImage.drawTo(canvas);
+}
+
+function rainbowEffect() {
+  var rainbowImage = null;
+  rainbowImage =  new SimpleImage(document.getElementById("originalFile"));
+  chackIfLoaded(rainbowImage);
+  var Y = null;
+  var partitionY = rainbowImage.getHeight() / 7 ;
+  var avg = null;
+  alert("partitionY = " + partitionY);
+  for (pixel of rainbowImage.values()){
+    avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+    if ( pixel.getY() < partitionY ){
+      if (avg < 128){
+        pixel.setRed(avg*2);
+        pixel.setGreen(0);
+        pixel.setBlue(0);
+      } else {
+          pixel.setRed(255);
+          pixel.setGreen(2*avg-255);
+          pixel.setBlue(2*avg-255);
+        }
+    } else {
+        if ( pixel.getY() < (partitionY * 2)){
+          if (avg < 128){
+            pixel.setRed(2 * avg);
+            pixel.setGreen(0.8 * avg);
+            pixel.setBlue(0);
+          } else {
+              pixel.setRed(255);
+              pixel.setGreen(1.2 * avg - 51);
+              pixel.setBlue(2 * avg - 255);
+            }
+        } else {
+            if ( pixel.getY() < (partitionY * 3)){
+              if (avg < 128){
+                pixel.setRed(2 * avg);
+                pixel.setGreen(2 * avg);
+                pixel.setBlue(0);
+              } else {
+                  pixel.setRed(255);
+                  pixel.setGreen(255);
+                  pixel.setBlue(2 * avg - 255);
+                }
+            } else {
+                if ( pixel.getY() < (partitionY * 4)){
+                  if (avg < 128){
+                    pixel.setRed(0);
+                    pixel.setGreen(2 * avg);
+                    pixel.setBlue(0);
+                  } else {
+                      pixel.setRed(2 * avg - 255);
+                      pixel.setGreen(255);
+                      pixel.setBlue(2 * avg - 255);
+                    }
+                } else {
+                    if ( pixel.getY() < (partitionY * 5)){
+                      if (avg < 128){
+                        pixel.setRed(0);
+                        pixel.setGreen(0);
+                        pixel.setBlue(2 * avg);
+                      } else {
+                          pixel.setRed(2 * avg - 255);
+                          pixel.setGreen(2 * avg - 255);
+                          pixel.setBlue(255);
+                        }
+                    } else {
+                        if ( pixel.getY() < (partitionY * 6)){
+                          if (avg < 128){
+                            pixel.setRed(0.8 * avg);
+                            pixel.setGreen(0);
+                            pixel.setBlue(2 * avg);
+                          } else {
+                              pixel.setRed(1.2 * avg - 51);
+                              pixel.setGreen(2 * avg - 255);
+                              pixel.setBlue(255);
+                            }
+                        } else {
+                            if (avg < 128){
+                              pixel.setRed(1.6 * avg);
+                              pixel.setGreen(0);
+                              pixel.setBlue(1.6 * avg);
+                            } else {
+                                pixel.setRed(.4 * avg + 153);
+                                pixel.setGreen(2 * avg - 255);
+                                pixel.setBlue(.4 * avg + 153);
+                              }
+
+                           }
+                        }
+                    }
+              }
+           }
+      }
+  }
+  clearCanvas();
+  rainbowImage.drawTo(canvas);
+}
+
+function resetImage(){
+  clearCanvas();
+  originalFile = null;
+}
+function clearCanvas(){
+  context.clearRect(0,0,canvas.width,canvas.height);
+}
+function chackIfLoaded(oploadingImage){
+  var i = 1;
+  //for (i < 3 ){
+    if (oploadingImage == null  || ! oploadingImage.complete()) {
+      alert("Image not loaded " + i);
+    }
+//    i = i + 1 ;
+//  }
+
+}

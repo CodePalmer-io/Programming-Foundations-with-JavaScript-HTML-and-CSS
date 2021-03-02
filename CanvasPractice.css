@@ -1,0 +1,41 @@
+canvas {
+    width: 200pt;
+    height: 100pt;
+    margin: 10px;
+    border: 1px solid red;
+}
+
+#case1 {
+    display: inline-block;
+}
+
+#case2 {
+    display: inline-block;
+}
+
+#aButton {
+    display: inline-block;
+}
+input {
+    font-size: 10pt;
+}
+
+.orangeback {
+    background-color: orange;
+}
+
+.lightgreenback {
+    background-color: lightgreen;
+}
+
+.blueback {
+    background-color: blue;
+}
+
+.hotpinkback {
+    background-color: hotpink;
+}
+
+.blackback {
+    background-color: black;
+}

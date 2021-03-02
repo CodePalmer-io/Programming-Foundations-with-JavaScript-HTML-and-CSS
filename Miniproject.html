@@ -1,0 +1,32 @@
+
+<script type="text/javascript" src="https://www.dukelearntoprogram.com//course1/common/js/image/SimpleImage.js" >
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Miniproject.css">
+    <title>MiniProject Part 1 - Palmer</title>
+</head>
+<body>
+    <h1 id="heading"> Palmer's MiniProject</h1>
+
+    <h2 class="subheading"> My Photo</h2>
+    <div>
+        <canvas id="myCanvas"></canvas>
+    </div>
+
+    <h3 class="subheading"> Filter option</h3>
+    <div>
+        <input type="file" id="imageFile" class="myButton" multiple = "false" accept="image/*" onchange="upload()">
+        <input type="button" id="redButton" class="myButton" value="red" onclick="redFilter()">
+        <input type="button" id="grayButton" class="myButton" value="gray" onclick="grayFilter()">
+        <input type="button" id="negativeButton" class="myButton" value="negative" onclick="negativeFilter()">
+        <input type="button" id="rainbowButton" class="myButton" value="rainbow" onclick="rainbowFilter()">
+        <input type="button" id="blurButton" class="myButton" value="blur" onclick="blurFilter()">
+        <input type="button" id="resetButton" class="myButton" value="reset" onclick="Reset()">
+    </div>
+ <script src="Miniproject.js" ></script>
+
+</body>
+</html>

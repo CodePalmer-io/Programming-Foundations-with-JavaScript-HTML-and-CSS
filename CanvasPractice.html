@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="CanvasPractice.css">
+    <title>Canvas Practice</title>
+</head>
+<body>
+    <h1 id="title1"> Canvas Practice </h1>
+    <canvas id ="case1" class="orangeback"></canvas>
+    <canvas id ="case2" class="lightgreenback"></canvas>
+    <input type="button" id="aButton" value="Change Color!" onclick="changeColor()">
+    <input type="button" id="redButton" value="Red" onclick="doRed()">
+    <input type="button" id="blueButton" value="Blue" onclick="doBlue()">
+    <p>
+    <input type="color" value="#FF0000" id="colorChange" onchange="doColor()">
+    <input type="range" min="10" max="100" value="10" id="slider" oninput=doSquare()>
+    </p>
+    <script src="CanvasPractice.js"></script>
+</body>
+</html>

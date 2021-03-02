@@ -1,0 +1,13 @@
+canvas {
+    height: 170pt;
+    border: 1px solid black;
+    margin: 5px 5px 5px 5px;
+}
+
+input {
+    font-size: 14pt;
+}
+
+h1 {
+    color: blue;
+}

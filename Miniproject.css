@@ -1,0 +1,22 @@
+
+canvas {
+
+    height: 500px;
+    border: 1px solid red;
+}
+body {
+    text-align: center;
+}
+
+body {
+    background-color: tan;
+}
+
+.subheading {
+    font-size: 24pt;
+}
+
+.myButton {
+    font-size: 12pt;
+}
+
